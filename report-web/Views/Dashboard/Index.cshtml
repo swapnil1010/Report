@@ -1,0 +1,374 @@
+﻿@{
+    Layout = "~/Views/Dashboard/_Layout.cshtml";
+    ViewBag.Title = "Dashboard";
+}
+
+<html lang="en">
+<body>
+    <div class="wrapper">
+        <div class="top_navbar">
+            <div class="hamburger">
+                <div class="hamburger__inner">
+                    <div class="one"></div>
+                    <div class="two"></div>
+                    <div class="three"></div>
+                </div>
+            </div>
+            <div class="menu">
+                <div class="logo">
+                    Indusnet Bank
+                </div>
+                <div class="right_menu">
+                    <ul>
+                        <li>
+                            <i class="fas fa-user"></i>
+                            <div class="profile_dd deactive">
+                                <div class="dd_item">Profile</div>
+                                <div class="dd_item">Change Password</div>
+                                <div class="dd_item" onclick="window.location.href='/Login'">Logout</div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="main_container">
+            <div class="sidebar">
+                <div class="sidebar__inner">
+                    <div class="profile">
+                        <div class="img">
+                           @* <img src="~/img/profile.jfif" alt="profile_pic">*@
+                            <img src="~/img/profile.png" alt="profile_pic">
+                        </div>
+                        <div class="profile_info">
+                            <p>Welcome</p>
+                            <p class="profile_name" value>@TempData["User"]</p>
+                           @* <p class="profile_name">@TempData["UserId"]</p>*@
+                          @*   <input type="hidden" id="UserId" name="UserId" value=@TempData["UserId"]>*@
+                        </div>
+                    </div>
+                    <ul>
+                        <li>
+                            <a href="#" id="dash-menu-click" onclick="toggleSection('dash-menu-click', this)">
+                                <span class="icon"><i class="fas fa-dice-d6"></i></span>
+                                <span class="title">Dashboard</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" id="new-project-menu-click" onclick="toggleSection('new-project-menu-click', this)">
+                                <span class="icon"><i class="fab fa-delicious"></i></span>
+                                <span class="title">New Project</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" id="ui-element-menu-click" onclick="toggleSection('ui-element-menu-click', this)">
+                                <span class="icon"><i class="fab fa-elementor"></i></span>
+                                <span class="title">UI Elements</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" id="chart-menu-click" onclick="toggleSection('chart-menu-click', this)">
+                                <span class="icon"><i class="fas fa-chart-pie"></i></span>
+                                <span class="title">Charts</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" id="table-menu-click" onclick="toggleSection('table-menu-click', this)">
+                                <span class="icon"><i class="fas fa-border-all"></i></span>
+                                <span class="title">Tables</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="container">
+                <div class="item" id="dash-menu">
+                    
+                    <div>
+                        <a id="ExportToExcel" href="#">Export to Excel</a>
+                        &nbsp;&nbsp;
+                        <select name="ProjectDropDown" id="ProjectDropDown">
+                           
+                        </select>
+                    </div>
+                    <div class="scrollable-table">
+                        <table class="fl-table">
+                            <thead>
+                                <tr class="black-border">
+                                    <th>Id</th>
+                                    <th>Project Head</th>
+                                    <th>Project Name</th>
+                                    <th>Spoc</th>
+                                    <th>Ibl Priority</th>
+                                    <th>Milestones</th>
+                                    <th>CurrentPhase</th>
+                                    <th>Status</th>
+                                    <th>Next Phase</th>
+                                    <th>Cr Details</th>
+                                    <th>Rag Status</th>
+                                    <th>Current Progress</th>
+                                    <th>Is Active</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody class="black-border" id="ProjectList">
+
+                            <tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="item" id="new-project-menu">
+
+                    <div class="cont" id="add-project">
+                        <header id="AddHeader">Add New Project</header>
+                        <header id="UpdateHeader">Update Existing Project</header>
+                        <form action="#" id="NewProjectForm">
+                            @Html.AntiForgeryToken()
+                            <div class="form first">
+                                <div class="scrollable-div">
+                                    <div class="details personal">
+                                        <input type="hidden" id="UserId" name="UserId" value=@TempData["UserId"]>
+                                        <input type="hidden" id="ProjectId" name="ProjectId" value="0" />
+                                        <div class="fields">
+                                            <div class="input-field">
+                                                <label>	Project </label>
+                                                <select name="Project" id="Project">
+                                                    <option disabled selected>Select Project</option>
+                                                </select>
+                                                <span id="ProjectError" class="error"></span>
+                                            </div>
+                                            <div class="input-field">
+                                                <label>Is Active</label>
+                                                <div class="gender-option">
+                                                    <div class="gender-option">
+                                                        <input type="radio" name="IsActive" checked value="Yes" />
+                                                        <span>Yes</span>
+                                                    </div>
+                                                    <div class="gender-option">
+                                                        <input type="radio" name="IsActive" value="No" />
+                                                        <span>No</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="input-field">
+                                                <label>	Project Name</label>
+                                                <input type="text" name="ProjectName" id="ProjectName" placeholder="Enter project name">
+                                                <span id="ProjectNameError" class="error"></span>
+                                            </div>
+
+                                            <div class="input-field">
+                                                <label>SPOC</label>
+                                                <input type="text" name="Spoc" id="Spoc" placeholder="Enter spoc">
+                                                <span id="SpocError" class="error"></span>
+                                            </div>
+
+                                            <div class="input-field">
+                                                <label>IBL Priority</label>
+                                                <input type="number" name="IblPriority" id="IblPriority" placeholder="Enter ibl priority">
+                                                <span id="IblPriorityError" class="error"></span>
+                                            </div>
+
+                                            <div class="input-field">
+                                                <label>Current Phase</label>
+                                                <input type="text" name="CurrentPhase" id="CurrentPhase" placeholder="Enter current phase">
+                                                <span id="CurrentPhaseError" class="error"></span>
+                                            </div>
+
+                                            <div class="input-field">
+                                                <label>Status</label>
+                                                <input type="text" name="Status" id="Status" placeholder="Enter status">
+                                                <span id="StatusError" class="error"></span>
+                                            </div>
+                                            <div class="input-field">
+                                                <label>Next Phase</label>
+                                                <input type="text" name="NextPhase" id="NextPhase" placeholder="Enter next phase" />
+                                                <span id="NextPhaseError" class="error"></span>
+                                            </div>
+                                            <div class="input-field">
+                                                <label>RAG Status</label>
+                                                <select name="RagStatus" id="RagStatus">
+                                                    <option disabled selected value="">Select rag status</option>
+                                                    <option value="None">None</option>
+                                                    <option value="Green">Green</option>
+                                                    <option value="Red">Red</option>
+                                                    <option value="Amber">Amber</option>
+                                                </select>
+                                                <span id="RagStatusError" class="error"></span>
+                                            </div>
+
+                                            <div class="input-field" id="DevStartDateSection">
+                                                <label>Dev Start Date</label>
+                                                <input type="date" name="DevStartDate" id="DevStartDate">
+                                                <span id="DevStartDateError" class="error"></span>
+                                            </div>
+                                            <div class="input-field" id="UatReleaseDateSection">
+                                                <label>UAT Release Date</label>
+                                                <input type="date" name="UatReleaseDate" id="UatReleaseDate">
+                                                <span id="UatReleaseDateError" class="error"></span>
+                                            </div>
+                                            <div class="input-field" id="UatSignoffDateSection">
+                                                <label>UAT Sign-Off Date</label>
+                                                <input type="date" name="UatSignoffDate" id="UatSignoffDate">
+                                                <span id="UatSignoffDateError" class="error"></span>
+                                            </div>
+                                            <div class="input-field" id="PreProdReleaseDateSection">
+                                                <label>Pre Production Release Date</label>
+                                                <input type="date" name="PreProdReleaseDate" id="PreProdReleaseDate">
+                                                <span id="PreProdReleaseDateError" class="error"></span>
+                                            </div>
+                                            <div class="input-field" id="PreProdSignoffDateSection">
+                                                <label>Pre Production Sign-Off Date</label>
+                                                <input type="date" name="PreProdSignoffDate" id="PreProdSignoffDate">
+                                                <span id="PreProdSignoffDateError" class="error"></span>
+                                            </div>
+                                            <div class="input-field" id="ProdReleaseDateSection">
+                                                <label>Production Release Date</label>
+                                                <input type="date" name="ProdReleaseDate" id="ProdReleaseDate">
+                                                <span id="ProdReleaseDateError" class="error"></span>
+                                            </div>
+       
+                                            <div class="editor">
+                                                <div class="input-field">
+                                                    <label>CR Details</label>
+                                                </div>
+                                                <textarea id="CrDetailsArea"></textarea>
+                                                <span id="CrDetailsError" class="error"></span>
+                                            </div>
+                                            <div class="editor">
+                                                <div class="input-field">
+                                                    <label>	Current Progress (Comments)</label>
+
+                                                </div>
+                                                <textarea id="CurrentProgressArea"></textarea>
+                                                <span id="CurrentProgressError" class="error"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="details ID">
+                                    </div>
+                                </div>
+                                <div class="buttons">
+                                <button class="backBtn" type="button" id="ResetBtn">
+                                    <i class="uil uil-navigator"></i>
+                                    <span class="btnText">Reset</span>
+                                </button>
+                                <button type="button" class="nextBtn" id="SubmitReportButton">
+                                    <span class="btnText">Submit</span>
+                                    <i class="uil uil-navigator"></i>
+                                </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="cont" id="project-popup">
+                        <form>
+                            <div class="table-container">
+                                <table class="scrollable-div" id="view-table">
+                                    <tbody>
+                                        <tr>
+                                            <th>Project</th>
+                                            <td id="ProjectView"></td>
+                                        </tr>
+                                        <tr>
+                                            <th>Is Active</th>
+                                            <td id="IsActiveView"></td>
+                                        </tr>
+                                        <tr>
+                                            <th>SPOC</th>
+                                            <td id="SpocView"></td>
+                                        </tr>
+                                        <tr>
+                                            <th>Project Name</th>
+                                            <td id="ProjectNameViewView"></td>
+                                        </tr>
+                                        <tr>
+                                            <th>IBL Priority</th>
+                                            <td id="IblPriorityView"></td>
+                                        </tr>
+                                        <tr>
+                                            <th>Current Phase</th>
+                                            <td id="CurrentPhaseView"></td>
+                                        </tr>
+                                        <tr>
+                                            <th>Status</th>
+                                            <td id="StatusView"></td>
+                                        </tr>
+                                        <tr>
+                                            <th>Next Phase</th>
+                                            <td id="NextPhaseView"></td>
+                                        </tr>
+                                        <tr>
+                                            <th>RAG Status</th>
+                                            <td id="RagStatusView"></td>
+                                        </tr>
+                                        <tr>
+                                            <th>Dev Start Date</th>
+                                            <td id="DevStartDateView"></td>
+                                        </tr>
+                                        <tr>
+                                            <th>UAT Release Date</th>
+                                            <td id="UatReleaseDateView"></td>
+                                        </tr>
+                                        <tr>
+                                            <th>UAT Sign-Off Date</th>
+                                            <td id="UatSignoffDateView"></td>
+                                        </tr>
+                                        <tr>
+                                            <th>Pre Production Release Date</th>
+                                            <td id="PreProdReleaseDateView"></td>
+                                        </tr>
+                                        <tr>
+                                            <th>Pre Production Sign-Off Date</th>
+                                            <td id="PreProdSignoffDateView"></td>
+                                        </tr>
+                                        <tr>
+                                            <th>Production Release Date</th>
+                                            <td id="ProdReleaseDateView"></td>
+                                        </tr>
+                                        <tr>
+                                            <th>CR Details</th>
+                                            <td id="CrDetailsView"></td>
+                                        </tr>
+                                        <tr>
+                                            <th>Current Progress</th>
+                                            <td id="CurrentProgressView"></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="buttons">
+                                <h3>Do you want to save changes?</h3>
+                                <button class="backBtn" id="NoBtn" type="button">
+                                    <i class="uil uil-navigator"></i>
+                                    <span class="btnText">No</span>
+                                </button>
+
+                                <button class="sumbit" type="button" id="SubmitViewBtn">
+                                    <span class="btnText">Yes</span>
+                                    <i class="uil uil-navigator"></i>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="item" id="ui-element-menu">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab a nesciunt doloribus. Explicabo minus cumque, molestiae tempore repellendus iusto enim maiores pariatur officiis perferendis excepturi, ut dolore laborum eligendi laudantium placeat aspernatur! Quos dolorum unde officiis labore est animi excepturi neque, provident, inventore nobis expedita facilis aspernatur, nihil in atque?
+                </div>
+                <div class="item" id="chart-menu">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab a nesciunt doloribus. Explicabo minus cumque, molestiae tempore repellendus iusto enim maiores pariatur officiis perferendis excepturi, ut dolore laborum eligendi laudantium placeat aspernatur! Quos dolorum unde officiis labore est animi excepturi neque, provident, inventore nobis expedita facilis aspernatur, nihil in atque?
+                </div>
+                <div class="item" id="table-menu">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab a nesciunt doloribus. Explicabo minus cumque, molestiae tempore repellendus iusto enim maiores pariatur officiis perferendis excepturi, ut dolore laborum eligendi laudantium placeat aspernatur! Quos dolorum unde officiis labore est animi excepturi neque, provident, inventore nobis expedita facilis aspernatur, nihil in atque?
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <footer class="credit">
+        Author: <a href="#" rel="nofollow" target="_blank"> BFS team </a> - Distributed By: <a title="Awesome web design code & scripts" href="#" target="_blank">INDUS</a>
+    </footer>
+</body>
+</html>

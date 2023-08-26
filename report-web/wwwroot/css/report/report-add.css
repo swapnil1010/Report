@@ -1,0 +1,333 @@
+/* ===== Google Font Import - Poppins ===== */
+/*@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600&display=swap');*/
+
+.cont {
+   /* position: relative;*/
+    width: 100%;
+    border-radius: 6px;
+    padding: 30px;
+    margin: 0 5px;
+    background-color: #fff;
+    box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+}
+
+    .cont header {
+       /* position: relative;*/
+        font-size: 20px;
+        font-weight: 600;
+        color: #333;
+    }
+
+        .cont header::before {
+            content: "";
+           /* position: absolute;*/
+            left: 0;
+            bottom: -2px;
+            height: 3px;
+            width: 27px;
+            border-radius: 8px;
+            background-color: #4070f4;
+        }
+
+    .cont form {
+       /* position: relative;*/
+        margin-top: 16px;
+        min-height: 490px;
+        background-color: #fff;
+        overflow: hidden;
+    }
+
+        .cont form .form {
+          /*  position: absolute;*/
+            background-color: #fff;
+            transition: 0.3s ease;
+        }
+
+
+
+form.secActive .form.first {
+    opacity: 0;
+    pointer-events: none;
+    transform: translateX(-100%);
+}
+
+.cont form .title {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 16px;
+    font-weight: 500;
+    margin: 6px 0;
+    color: #333;
+}
+
+.cont form .fields {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+form .fields .input-field {
+    display: flex;
+    width: calc(100% / 3 - 15px);
+    flex-direction: column;
+    margin: 4px 0;
+}
+
+.input-field label {
+    font-size: 12px;
+    font-weight: 500;
+    color: #2e2e2e;
+}
+
+.input-field input, select {
+    outline: none;
+    font-size: 14px;
+    font-weight: 400;
+    color: #333;
+    border-radius: 5px;
+    border: 1px solid #aaa;
+    padding: 0 15px;
+    height: 42px;
+    margin: 8px 0;
+}
+
+    .input-field input :focus,
+    .input-field select:focus {
+        box-shadow: 0 3px 6px rgba(0,0,0,0.13);
+    }
+
+    .input-field select,
+    .input-field input[type="date"] {
+        color: #707070;
+    }
+
+        .input-field input[type="date"]:valid {
+            color: #333;
+        }
+
+.cont form button, .backBtn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 45px;
+    max-width: 200px;
+    width: 100%;
+    border: none;
+    outline: none;
+    color: #fff;
+    border-radius: 5px;
+    margin: 25px 0;
+    background-color: #4070f4;
+    transition: all 0.3s linear;
+    cursor: pointer;
+}
+
+.cont form .btnText {
+    font-size: 14px;
+    font-weight: 400;
+}
+
+form button:hover {
+    /* background-color: #265df2;*/
+    background-color: hsl(180, 50%, 70%);
+}
+
+form button i,
+form .backBtn i {
+    margin: 0 6px;
+}
+
+form .backBtn i {
+    transform: rotate(180deg);
+}
+
+form .buttons {
+    display: flex;
+    align-items: center;
+}
+
+    form .buttons button, .backBtn {
+        margin-right: 14px;
+    }
+
+.scrollable-div {
+    height: 415px; /* Set the desired height for the scrollable div */
+    overflow: auto; /* This will add a scrollbar when content overflows */
+}
+.editor {
+    width: 100%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.black-border {
+    border: 1px solid black;
+}
+.error {
+    color: orangered;
+}
+.gender-option {
+    display: flex;
+    align-items: center;
+    column-gap: 50px;
+    flex-wrap: wrap;
+}
+.personal{
+    margin-right:20px;
+}
+.scrollable-table {
+    overflow: auto;
+    height: 580px;
+}
+.bold-text {
+    font-weight: bold;
+}
+.editbtn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 45px;
+    max-width: 200px;
+    width: 100%;
+    border: none;
+    outline: none;
+    color: #fff;
+    border-radius: 5px;
+    margin: 25px 0;
+    background-color: rgb(128,203,196);
+    transition: all 0.3s linear;
+    cursor: pointer;
+}
+.editbtn:hover {
+    background-color: rgb(50,73,96);
+}
+#ProjectDropDown{
+    height:20px;
+}
+.fl-table .miles {
+    text-align: left;
+}
+@media (max-width: 750px) {
+    .cont form {
+        overflow-y: scroll;
+    }
+
+        .cont form::-webkit-scrollbar {
+            display: none;
+        }
+
+    form .fields .input-field {
+        width: calc(100% / 2 - 15px);
+    }
+}
+
+@media (max-width: 550px) {
+    form .fields .input-field {
+        width: 100%;
+    }
+}
+/*table css*/
+.pop-table {
+    border: 1px solid black;
+    border-collapse: collapse;
+    width:100%;
+}
+.headerOdd {
+    color: #ffffff;
+    background: #4FC3A1;
+    border: 1px solid;
+}
+
+
+.headerEven {
+    color: #ffffff;
+    background: #324960;
+    border: 1px solid;
+}
+.pop-table-td {
+    border: 1px solid;
+}
+
+#NoBtn {
+    margin-left: 35px;
+}
+/*new table*/
+
+/* default styling. Nothing to do with freexing first row and column */
+
+
+#view-table {
+    border-collapse: collapse;
+    font-family: helvetica;
+    min-height: 490px;
+}
+
+#view-table td, #view-table th {
+    border: 1px solid;
+    padding: 10px;
+    min-width: 226px;
+    background: white;
+    box-sizing: border-box;
+    text-align: left;
+}
+
+.table-container {
+   /* position: relative;*/
+    max-height: 430px;
+/*    width: 500px;*/
+    overflow: scroll;
+}
+
+#view-table thead th {
+    position: -webkit-sticky;
+    /* position: sticky;*/
+    top: 0;
+    z-index: 2;
+    /* background: hsl(20, 50%, 70%);*/
+    background: #5AB9B9;
+}
+
+    #view-table thead th:first-child {
+        left: 0;
+        z-index: 3;
+    }
+
+#view-table tfoot {
+    position: -webkit-sticky;
+    bottom: 0;
+    z-index: 2;
+}
+
+#view-table tfoot td {
+    position: sticky;
+    bottom: 0;
+    z-index: 2;
+    background: hsl(20, 50%, 70%);
+}
+
+#view-table tfoot td:first-child {
+    z-index: 3;
+}
+
+#view-table tbody {
+    overflow: scroll;
+    height: 200px;
+}
+
+/* MAKE LEFT COLUMN FIXEZ */
+#view-table tr > :first-child {
+    position: -webkit-sticky;
+    /*position: sticky;*/
+    background: hsl(180, 50%, 70%);
+    left: 0;
+}
+/* don't do this */
+#view-table tr > :first-child {
+    box-shadow: inset 0px 1px black;
+}
+
+
+#view-table td {
+    width: 100%;
+}
+

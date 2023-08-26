@@ -1,0 +1,31 @@
+﻿@{
+    Layout = "~/Views/Login/_layout.cshtml";
+    ViewBag.Title = "Login";
+}
+<html lang="en" dir="ltr">
+<body>
+    <div class="center">
+        <h1>Login</h1>
+        <form method="post" action="/Login/DashBoard">
+            @Html.AntiForgeryToken()
+            <div class="txt_field">
+                <input type="text" name="UserName" id="UserName" required />
+                <span></span>
+                <label>Username</label>
+            </div>
+            <div class="error" id="UserNameError">
+            </div>
+            <div class="txt_field">
+                <input type="password" name="Password" id="Password" required />
+                <span></span>
+                <label>Password</label>
+            </div>
+            <div id="PasswordError" class="error">
+            </div>
+            <div class="pass">Forgot Password?</div>
+            <input type="submit" value="Login" id="LoginBtn" />
+            <div class="signup_link">Not a member? <a href="#">Signup</a></div>
+        </form>
+    </div>
+</body>
+</html>

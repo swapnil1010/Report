@@ -1,0 +1,28 @@
+﻿<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    @* <title> CSS Sidebar Menu with icons Example</title>*@
+    <script src="~/js/dashboard/b99e675b6e.js"></script>
+    <!-- jQuery -->
+    <script src="~/js/dashboard/jquery-3.4.1.min.js"></script>
+    <!-- Add the SweetAlert CSS -->
+    <script src="~/plugins/sweetalert/sweetalert2@11.js"></script>
+    <script src="~/plugins/sweetalert/sweetalert.js"></script>
+    <!-- SideBar-Menu CSS -->
+    <link rel="stylesheet" href="~/css/dashboard/dashboard-styles.css">
+    <link rel="stylesheet" href="~/css/report/report-add.css">
+
+    <!-- Demo CSS -->
+    <link rel="stylesheet" href="~/plugins/dashboard/dashboard-demo.css">
+    <script src="~/plugins/ckeditor/ckeditor.js"></script>
+    <link rel="stylesheet" href="~/plugins/ckeditor/skins/moono/editor.css">
+    <script src="~/js/report/report.js"></script>
+</head>
+<body>
+    @RenderBody()
+</body>
+</html>
+<script>
+    CKEDITOR.replace('CrDetailsArea');
+    CKEDITOR.replace('CurrentProgressArea');
+</script>
