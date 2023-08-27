@@ -9,7 +9,7 @@ $(document).ready(function () {
         $(".wrapper").toggleClass("active")
     })
 
-    $(".top_navbar .fas").click(function () {
+    $(".right_menu").click(function () {
         $(".profile_dd").toggleClass("active deactive");
     });
     $('#project-popup').css({
